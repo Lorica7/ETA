@@ -1,12 +1,13 @@
 
   // Initialize Firebase
+
   var config = {
-    apiKey: "AIzaSyDTJUjqxwpbotfVejqlK6HdJJAFGqlS-4g",
-    authDomain: "click-counter-83957.firebaseapp.com",
-    databaseURL: "https://click-counter-83957.firebaseio.com",
-    projectId: "click-counter-83957",
-    storageBucket: "",
-    messagingSenderId: "368830660281"
+    apiKey: "AIzaSyCqtEwFWwVVdd5teCAI_htzh3MaxS2oxSw",
+    authDomain: "trainscheduleapp-da14d.firebaseapp.com",
+    databaseURL: "https://trainscheduleapp-da14d.firebaseio.com",
+    projectId: "trainscheduleapp-da14d",
+    storageBucket: "trainscheduleapp-da14d.appspot.com",
+    messagingSenderId: "752893953291"
   };
   firebase.initializeApp(config);
 

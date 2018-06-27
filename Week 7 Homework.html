@@ -4,11 +4,18 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Train Schedule</title>
-
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Train Schedule App</title>
+  <!--Firebase -->
   <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -18,5 +25,79 @@
     <br>
 
     <!-- Jumbotron -->
-    <div class="jumbotron">
-      <h1 class="text-center">Sign-Up Today!</h1>
+    <div id="outsideCont">
+
+      <div class="jumbotron jumbotron-fluid">
+        <!--Jumbotron container-->
+        <div class="container">
+          <h1 class="display-4 fa fa-newspaper-o" style="font-size:50px; font-style:italic">Train Times</h1>
+        </div>
+      </div>
+      <!--closing div Jumbotron container-->
+
+      <table class="table table-striped">
+        <thead>
+          <tr></tr>
+          <h3 class="text-secondary">Current Train Schedule</h3>
+          </tr>
+        </thead>
+        <thead>
+          <tr>
+
+            <th scope="col" id="TrainName">Train Name</th>
+            <th scope="col" id="destination">Destination</th>
+            <th scope="col" id="freq">Frequency in minutes</th>
+            <th scope="col" id="nextTr">Next Arrival</th>
+            <th scope="col" id="minAway">Minutes Away </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+
+            <td>Snowpiercer</td>
+            <td>Unknown</td>
+            <td>20</td>
+            <td>5:00 p.m.</td>
+            <td>15</td>
+            
+
+        </tbody>
+      </table>
+
+
+      <form>
+
+        <div class="param">
+          <h5 class="fa fa-list-alt" style="font-size:18px;"> Add a Train</h5>
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="name-input">Train Name</label>
+          <input type="text" id="train-name" class="form-control" placeholder="i.e. Orient Express">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="destination-input">Destination</label>
+          <input type="text" id="destination" class="form-control" placeholder="i.e. Constantinople">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="firstTrain-input">First Train Time (HH:mm) military time</label>
+          <input type="text" id="firstTrain" class="form-control"  placeholder= "08:00">
+        </div>
+        <br>
+        <div class="form-group">
+          <label for="frequency-input">Frequency (mm) </label>
+          <input type="text" id="frequency" class="form-control" placeholder= "20">
+        </div>
+
+        <br>
+        <button type="submit" class="alert alert-dark fa fa-submit button"> Submit</button>
+  
+
+      </form>
+
+</body>
+<script src="logic.js"></script>
+
+</html>
