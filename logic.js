@@ -30,7 +30,7 @@ $("#submitButton").on("click", function (event) {
     frequency = $("#frequency").val().trim();
 
     //dave values in database
-    firebase.database().ref().set({
+    firebase.database().ref().push({
         train: train,
         dest: dest,
         firstTrain: firstTrain,
@@ -42,7 +42,8 @@ $("#submitButton").on("click", function (event) {
     $("#frequency").val("");
 });
 
-database.ref().on("value", function (snapshot) {
+
+/* database.ref().on("value", function (snapshot) {
 
     // Print the data values to console to test the "listener"
     console.log(snapshot.val().train)
@@ -53,50 +54,40 @@ database.ref().on("value", function (snapshot) {
     let name = (snapshot.val().train)
     let freq = (snapshot.val().frequency);
     let destination = (snapshot.val().dest);
-
-
-
 });
+    */
+
+
 
 database.ref().on("child_added", function (childSnapshot) {
-    console.log(childSnapshot.val());
-
     // Store everything into a variable.
-    var empName = childSnapshot.val().name;
-    var empRole = childSnapshot.val().role;
-    var empStart = childSnapshot.val().start;
-    var empRate = childSnapshot.val().rate;
+    var trName = childSnapshot.val().train;
+    var trDest = childSnapshot.val().dest;
+    var trFirstTrain = childSnapshot.val().firstTrain;
+    var trFreq = childSnapshot.val().frequency;
+    let trNext= "";
+    let trMins= "";
 
-    // Employee Info
-    console.log(empName);
-    console.log(empRole);
-    console.log(empStart);
-    console.log(empRate);
+    // testing
+    console.log(trName);
+    console.log(trDest);
+    console.log(trFirstTrain);
+    console.log(trFreq);
 
-    // Prettify the employee start
-    var empStartPretty = moment.unix(empStart).format("MM/DD/YYYY");
-
-    // Calculate the months worked using hardcore math
-    // To calculate the months worked
-    var empMonths = moment().diff(moment(empStart, "X"), "months");
-    console.log(empMonths);
-
-    // Calculate the total billed rate
-    var empBilled = empMonths * empRate;
-    console.log(empBilled);
+  
 
     // Create the new row
     var newRow = $("<tr>").append(
-        $("<td>").text(empName),
-        $("<td>").text(empRole),
-        $("<td>").text(empStartPretty),
-        $("<td>").text(empMonths),
-        $("<td>").text(empRate),
-        $("<td>").text(empBilled)
+        $("<td>").text(trName),
+        $("<td>").text(trDest),
+        $("<td>").text(trFreq),
+        $("<td>").text(""),
+        $("<td>").text(""),
+       
     );
 
     // Append the new row to the table
-    $("#employee-table > tbody").append(newRow);
+    $("#train-times > tbody").append(newRow);
 });
 
 
