@@ -18,8 +18,7 @@ var dest = "";
 var firstTrain = "";
 var frequency = 0;
 
-
-
+//Event listener on Submit button
 $("#submitButton").on("click", function (event) {
     event.preventDefault();
     console.log("hello");
@@ -42,78 +41,37 @@ $("#submitButton").on("click", function (event) {
     $("#frequency").val("");
 });
 
-
-/* database.ref().on("value", function (snapshot) {
-
-    // Print the data values to console to test the "listener"
-    console.log(snapshot.val().train)
-    console.log(snapshot.val().dest);
-    console.log(snapshot.val().firstTrain);
-    console.log(snapshot.val().frequency);
-
-    let name = (snapshot.val().train)
-    let freq = (snapshot.val().frequency);
-    let destination = (snapshot.val().dest);
-});
-    */
-
-
-
 database.ref().on("child_added", function (childSnapshot) {
     // Store everything into a variable.
     var trName = childSnapshot.val().train;
     var trDest = childSnapshot.val().dest;
     var trFirstTrain = childSnapshot.val().firstTrain;
     var trFreq = childSnapshot.val().frequency;
-    let trNext= "";
-    let trMins= "";
+    let trNext = "";
+    let trMins = "";
+    // Time calculations //
 
-    // testing
-    console.log(trName);
-    console.log(trDest);
-    console.log(trFirstTrain);
-    console.log(trFreq);
+    var tFrequency = trFreq;
+    var firstTime = trFirstTrain;
 
-  
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    var currentTime = moment();
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    var tRemainder = diffTime % tFrequency;
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    trNext = moment(nextTrain).format("hh:mm");
 
+    //Time Calculations end
     // Create the new row
     var newRow = $("<tr>").append(
         $("<td>").text(trName),
         $("<td>").text(trDest),
         $("<td>").text(trFreq),
-        $("<td>").text(""),
-        $("<td>").text(""),
-       
+        $("<td>").text(trNext),
+        $("<td>").text(tMinutesTillTrain),
     );
-
     // Append the new row to the table
     $("#train-times > tbody").append(newRow);
 });
-
-
-
-
-
-
-
-//Example of a listener in Firebase and code for counters
-/* var count = 100;
-
-firebase.database().ref().on('value', function (snapshot) {
-    snapshot.log(snapshot.val());
-    count = snapshot.val().clicks;
-    $("#click-value").html(count);
-});
-
-$("#clickButton").on('click', function () {
-    count--;
-    firebase.database().ref().set({
-        clicks: count
-    });
-
-});
-$("#restartButton").on('click', function () {
-    firebase.database.ref().set({
-        clicks: 100,
-    });
-});  */
