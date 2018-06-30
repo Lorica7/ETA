@@ -1,4 +1,3 @@
-
 // Initialize Firebase
 
 var config = {
@@ -28,7 +27,7 @@ $("#submitButton").on("click", function (event) {
     firstTrain = $("#firstTrain").val().trim();
     frequency = $("#frequency").val().trim();
 
-    //dave values in database
+    //save values in database
     firebase.database().ref().push({
         train: train,
         dest: dest,
@@ -43,29 +42,27 @@ $("#submitButton").on("click", function (event) {
 
 database.ref().on("child_added", function (childSnapshot) {
     // Store everything into a variable.
-    var trName = childSnapshot.val().train;
-    var trDest = childSnapshot.val().dest;
-    var trFirstTrain = childSnapshot.val().firstTrain;
-    var trFreq = childSnapshot.val().frequency;
+    let trName = childSnapshot.val().train;
+    let trDest = childSnapshot.val().dest;
+    let trFirstTrain = childSnapshot.val().firstTrain;
+    let trFreq = childSnapshot.val().frequency;
     let trNext = "";
     let trMins = "";
+    let trFrequency = trFreq;
+    let firstTime = trFirstTrain;
     // Time calculations //
-
-    var tFrequency = trFreq;
-    var firstTime = trFirstTrain;
-
     // First Time (pushed back 1 year to make sure it comes before current time)
-    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
-    var currentTime = moment();
-    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-    var tRemainder = diffTime % tFrequency;
-    var tMinutesTillTrain = tFrequency - tRemainder;
-    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    let firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    let currentTime = moment();
+    let diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    let tRemainder = diffTime % trFrequency;
+    let tMinutesTillTrain = trFrequency - tRemainder;
+    let nextTrain = moment().add(tMinutesTillTrain, "minutes");
     trNext = moment(nextTrain).format("hh:mm");
 
     //Time Calculations end
     // Create the new row
-    var newRow = $("<tr>").append(
+    let newRow = $("<tr>").append(
         $("<td>").text(trName),
         $("<td>").text(trDest),
         $("<td>").text(trFreq),
