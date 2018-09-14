@@ -1,0 +1,46 @@
+h1 {
+    text-align: center;
+    font-family: 'Paytone One', sans-serif;
+}
+
+h2{
+    color:#3f548b;
+    font-family: 'Paytone One', sans-serif;
+}
+
+h3{
+    font-family: 'Paytone One', sans-serif;
+}
+
+th{
+    font-family: 'Paytone One', sans-serif;
+    font-size: 1.25em;
+}
+
+form {
+    margin-top: 40px;
+}
+
+table {
+    margin-bottom: 30px;
+}
+
+body {
+    background-image: url("blue-trainweb.jpg");
+    background-repeat: no-repeat;
+    background-position: right top; 
+    background-size: cover;
+    color: whitesmoke;
+    font-family: 'Roboto', sans-serif;
+}
+
+#outsideCont{
+    padding: 5%;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.5em;
+    font-family: 'Paytone One', sans-serif;
+    color: #3f548b;
+}

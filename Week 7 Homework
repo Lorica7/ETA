@@ -1,0 +1,23 @@
+
+When the values are put into Firebase DB, they keep replacing each other....why?
+	Is that OK or need to be fixed.
+
+
+
+WHATS THE DIFFERENCE:
+
+database.ref().on("value", function (snapshot) {
+	let name = (snapshot.val().train)
+
+AND
+
+database.ref().on("child_added", function (childSnapshot) {
+    console.log(childSnapshot.val());
+ 
+	var empName = childSnapshot.val().name;
+    	var empRole = childSnapshot.val().role;
+
+
+Maybe explain some of the employee timesheet code?
+
+Why is JS for creating new text rows running ONLOAD?
